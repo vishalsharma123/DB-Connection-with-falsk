@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<br lang="en">
+<meta charset="UTF-8">
+<h1><title>ADAS Metrics</title></h1>
+<script type="text/javascript" src="static/js/jquery.min.js"></script>
+<script src='static/js/canvasjs.min.js'></script>
+
+
+       <table width="100%">
+        <tr>
+           <td> <span><a><img src="data:image/png;base64,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" height="50" /></a></span></td>
+
+
+            <td width="40%"> <h1><font color="RGB(0,32,96)"> ADAS METRICS </font></h1></td>
+        <td align="right"><span><a><img src="data:image/png;base64,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" height="50" /></a></span></td>
+        </tr>
+       </table>
+
+<hr>
+<h2><font color="RGB(0,32,96)">Table of Contents</font></h2>
+<div id="nav">
+<nav id="TOC">
+<ul>
+
+    <li><a href="#general-information" style="text-decoration:none"><span class="toc-section-number">1</span><font color="RGB(0,32,96)" style="text-decoration:none"> General Information</font></a><ul>
+        <li><a href="#purpose-and-scope" style="text-decoration:none"><span class="toc-section-number">1.1</span><font color="RGB(0,32,96)">Purpose and Scope</font></a></li>
+</ul></li>
+    <li><a href="#stakeholder-requirement-metrics" style="text-decoration:none"><span class="toc-section-number">2</span><font color="RGB(0,32,96)"> Stakeholder Requirement Metrics</font></a><ul>
+        <li><a href="#sh-project-type-stakeholder-requirements" style="text-decoration:none"><span class="toc-section-number">2.1</span><font color="RGB(0,32,96)"> SH-Project-Type: Stakeholder Requirements</font></a></li>
+</ul></li>
+    <li><a href="#system-requirement-metrics" style="text-decoration:none"><span class="toc-section-number">3</span><font color="RGB(0,32,96)"> System Requirement Metrics </font></a><ul>
+        <li><a href="#Total Amount of System Requirements" style="text-decoration:none"><span class="toc-section-number">3.1</span><font color="RGB(0,32,96)"> Total Amount of System Requirements</font></a></li>
+         <li><a href="#Total Amount of System Requirements per Discipline" style="text-decoration:none"><span class="toc-section-number">3.2</span><font color="RGB(0,32,96)"> Total Amount of System Requirements per Discipline</font></a></li>
+         <li><a href="#Number of System Requirements by particular Discipline and per _Target" style="text-decoration:none"><span class="toc-section-number">3.3</span><font color="RGB(0,32,96)"> Number of System Requirements by particular Discipline and per _Target</font></a></li>
+         <li><a href="#Number of System Requirements per _Target and _ReqStatus" style="text-decoration:none"><span class="toc-section-number">3.4</span><font color="RGB(0,32,96)"> Number of System Requirements per _Target and _ReqStatus</font></a></li>
+        <li><a href="#System Requirements Status for Each Target and Different Discipline" style="text-decoration:none"><span class="toc-section-number">3.5</span><font color="RGB(0,32,96)"> System Requirements Status for Each Target and Different Discipline</font></a><ul>
+        <li><a href="#System Requirements status ReqStatusHW : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.1</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusHW : For Each Target and Discipline</font></a></li>
+         <li><a href="#System Requirements status ReqStatusSW : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.2</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusSW : For Each Target and Discipline</font></a></li>
+         <li><a href="#System Requirements status ReqStatusMECH : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.3</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusMECH : For Each Target and Discipline</font></a></li>
+         <li><a href="#System Requirements status ReqStatusTest : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.4</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusTest : For Each Target and Discipline</font></a></li>
+        <li><a href="#System Requirements status ReqStatusFuSa : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.5</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusFuSa : For Each Target and Discipline</font></a></li>
+         <li><a href="#System Requirements status ReqStatusSYS : For Each Target and Discipline" style="text-decoration:none"><span class="toc-section-number">3.5.6</span><font color="RGB(0,32,96)"> System Requirements status ReqStatusSYS : For Each Target and Discipline</font></a></li>
+        </ul>
+        <li><a href="#System Requirements Review Status per _System Functions and _Target" style="text-decoration:none"><span class="toc-section-number">3.6</span><font color="RGB(0,32,96)"> System Requirements Review Status per _System Functions and _Target</font></a></li>
+    </ul></li>
+
+
+
+</ul></li>
+</ul>
+</nav>
+</div>
+
+<h2 id="general-information"><span class="header-section-number"></span><font color="RGB(0,32,96)">1 General Information</font></h2>
+
+<h3 id="purpose-and-scope"><span class="header-section-number"></span><font color="RGB(0,32,96)">1.1 Purpose and Scope</font></h3>
+
+<p>The purpose of this report is to present status of established project metrics. All metrics are automatically generated by the Jenkins Server by extracting data from various tools. The scope is limited to the specific project as outlined in the project specific Quality Plan.</p>
+<h2 id="stakeholder-requirement-metrics"><span class="header-section-number"></span><font color="RGB(0,32,96)">2 Stakeholder Requirement Metrics</font></h2>
+
+<h3 id="sh-project-type-stakeholder-requirements"><span class="header-section-number"></span> <font color="RGB(0,32,96)">2.1 SH-Project-Type: Stakeholder Requirements</font></h3>
+
+<div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;">
+    <font color="RGB(0,32,96)">
+Description:
+    </font></h4>
+    <p>The indicator shall show the fraction of ALL stakeholder requirements per type.</p>
+</div>
+<div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><font color="RGB(0,32,96)">
+Flask Definition:
+</font></h4>
+</div>
+<tr>
+    <p>Including all modules in the “ADAS Project” Stakeholder level folder.</p>
+
+</tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class ="1">
+  <body>
+  <h3> <font color="RGB(0,32,96)">2.1.1 Attribute : _ImpactedDiscipline:</font></h3><br/>
+
+  <table border="1">
+    <tr>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Stakeholder Level Metrics</font></th>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Stakeholder #</font></th>
+       <th bgcolor="RGB(0,32,96)"><font color="white">Ratio #</font></th>
+
+  </tr>
+      <tr>
+    {% for row in data %}
+    <tr>
+    {% for d in row %}
+      {% if d == '' %}
+         <td>EMPTY</td>
+      {% else %}
+         <td class = "IP">{{ d }}</td>
+        {% endif %}
+    {% endfor %}
+      <td class = "IP">{{ ((row[1]/totalInt)*100)}}%</td>
+    </tr>
+{% endfor %}
+  </tr>
+    <tr>
+      <td>TOTAL</td>
+      <td>{% for row in total %}{% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+        <td>100%</td>
+
+    </tr>
+  </table>
+
+
+  <h3><font color="RGB(0,32,96)">2.1.2 Attribute : _ReqStatusSHR:</font></h3><br/>
+  <table border="1">
+    <tr>
+        <th bgcolor=RGB(0,32,96)"><font color="white">Stakeholder Level Metrics</font></th>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Stakeholder #</font></th>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Ratio #</font></th>
+
+  </tr>
+    {% for row in data1 %}
+    <tr>
+    {% for d in row %}
+      {% if d == '' %}
+         <td>EMPTY</td>
+      {% else %}
+         <td class = "IP">{{ d }}</td>
+        {% endif %}
+    {% endfor %}
+      <td class = "IP">{{ row[1]/totalInt*100 }}%</td>
+    </tr>
+{% endfor %}
+    </tr>
+
+     <tr>
+      <td>TOTAL</td>
+      <td>{% for row in total %}{% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+         <td>100%</td>
+
+    </tr>
+  </table>
+
+  <h3><font color="RGB(0,32,96)">2.1.3 Attribute : _TypeSHR:</font></h3><br/>
+<table border="1">
+    <tr>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Stakeholder Level Metrics</font></th>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Stakeholder #</font></th>
+        <th bgcolor="RGB(0,32,96)"><font color="white">Ratio #</font></th>
+
+  </tr>
+    {% for row in data2 %}
+    <tr>
+     {% for d in row %}
+      {% if d == '' %}
+         <td>EMPTY</td>
+      {% else %}
+         <td class = "IP">{{ d }}</td>
+        {% endif %}
+    {% endfor %}
+      <td class = "IP">{{ row[1]/totalInt*100 }}%</td>
+    </tr>
+{% endfor %}
+    </tr>
+   <tr>
+      <td>TOTAL</td>
+      <td>{% for row in total %}{% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+       <td>100%</td>
+
+    </tr>
+ </table>
+  </body></div>
+
+
+
+<script>
+ pieBarData = null;
+    var list=[];
+    var totList=[];
+    i = 0;
+    function myScript1(targetList,y,total_for_Reqests_HW) {
+        list = targetList;
+        totList =y ;
+    }
+
+   var hiddenIndexVariable = ["true", "false","false","false","false"];
+
+function checkTargetToShow(data) {
+//    var divClass = this.document.getElementsByTagName("div")[0].className;
+    var divClass =data.parentNode.parentNode.parentNode.parentNode.className;
+    var tableClass = document.getElementsByClassName(divClass);
+    var self = data.value;
+    $(this).find(divClass);
+    if(divClass == tableClass[2].className){
+        //hiddenindex = $(data).parents("th").index();
+        if(data.checked)
+        {
+             hiddenIndexVariable[$(data).parents("th").index()-1] = "false";
+            $('table.'+divClass +' tr td.'+ self).show();
+
+        }else
+        {
+            hiddenIndexVariable[$(data).parents("th").index()-1] = "true";
+            $('table.'+divClass +' tr td.'+ self).hide();
+        }
+    }
+}
+
+    var barData = null;
+    var dataPointsHW= [];
+    var dataPointsSW= [];
+    var dataPointsMech= [];
+    var dataPoints1= [];
+    var dataPoints2= [];
+    var dataPoints3= [];
+    var dataPoints3= [];
+
+    var dataPoints11= [];
+    var dataPoints12= [];
+    var dataPoints13= [];
+    var dataPoints14= [];
+    var dataPoints15= [];
+    var dataPoints16= [];
+    var dataPoints17= [];
+    var dataPoints18= [];
+    var dataPoints19= [];
+    var dataPoints20= [];
+    var dataPoints21= [];
+
+
+
+    var count=1;
+var val=[];var targets=[];
+      // bar chart data
+   function createBarData(values){
+      // values.shift();
+        for (var i = 0;i < values.length;i++)
+        {
+            if (hiddenIndexVariable[i] != "true")
+                val.push(values[i]);
+        }
+
+        for (var i = 0;i < list.length;i++)
+        {
+            if (hiddenIndexVariable[i] != "true")
+                targets.push(list[i]);
+        }
+
+       barData = {
+           labels : targets,
+           data :   val
+       }
+
+   }
+
+      function createDataPoints12(values){
+
+
+      createBarData(values);
+          $.each(barData.labels, function(key, value) {
+                if(count==1)
+                    dataPoints11.push({label:  value, y: barData.data[key]});
+                if(count==2)
+                    dataPoints12.push({label:  value, y: barData.data[key]});
+                if(count==3)
+                    dataPoints13.push({label:  value, y: barData.data[key]});
+                if(count==4)
+                    dataPoints14.push({label:  value, y: barData.data[key]});
+                if(count==5)
+                    dataPoints15.push({label:  value, y: barData.data[key]});
+                if(count==6)
+                    dataPoints16.push({label:  value, y: barData.data[key]});
+                if(count==7)
+                    dataPoints17.push({label:  value, y: barData.data[key]})
+                if(count==8)
+                   dataPoints18.push({label:  value, y: barData.data[key]})
+                if(count==9)
+                    dataPoints19.push({label:  value, y: barData.data[key]})
+                if(count==10)
+                    dataPoints20.push({label:  value, y: barData.data[key]})
+                if(count==11)
+                    dataPoints21.push({label:  value, y: barData.data[key]})
+
+          });
+       count++;
+       barData = null;
+       targets=[];
+       val=[];
+
+  }
+
+   function createDataPoints(values){
+
+
+      createBarData(values);
+          $.each(barData.labels, function(key, value) {
+                if(count==1)
+                    dataPointsHW.push({label:  value, y: barData.data[key]});
+                if(count==2)
+                    dataPointsSW.push({label:  value, y: barData.data[key]});
+                if(count==3)
+                    dataPointsMech.push({label:  value, y: barData.data[key]});
+                if(count==4)
+                    dataPoints1.push({label:  value, y: barData.data[key]});
+                if(count==5)
+                    dataPoints2.push({label:  value, y: barData.data[key]});
+                if(count==6)
+                    dataPoints3.push({label:  value, y: barData.data[key]})
+          });
+       count++;
+       barData = null;
+       targets=[];
+       val=[];
+
+  }
+
+   function createGraph(chartContainerNm,valuesHW,valuesSW,valuesMech,values1,values2,values3,checkedGraph)
+   {
+        var dataPointsss=[];
+
+           if (valuesHW != null) {
+               createDataPoints(valuesHW);
+                dataPointsss.push(dataPointsHW);
+           }
+           if (valuesSW != null) {
+               createDataPoints(valuesSW);
+                dataPointsss.push(dataPointsSW);
+           }
+           if (valuesMech != null) {
+               createDataPoints(valuesMech);
+                dataPointsss.push(dataPointsMech);
+           }
+            if (values1 != null) {
+               createDataPoints(values1);
+               dataPointsss.push(dataPoints1);
+           }
+           if (values2 != null) {
+               createDataPoints(values2);
+               dataPointsss.push(dataPoints2);
+           }
+           if (values3 != null) {
+               createDataPoints(values3);
+               dataPointsss.push(dataPoints3);
+           }
+
+           var dpts = [];
+
+                for (var i = 0; i < dataPointsss.length; i++) {
+                    dpts.push({name: i+1+"", showInLegend: true, type: "column", dataPoints: dataPointsss[i]});
+                }
+
+
+           if (checkedGraph.checked) {
+                document.getElementById(chartContainerNm).style.display = "block";
+           var chart = new CanvasJS.Chart(chartContainerNm, {
+               title: {
+                   text: "Filter Bar Graph"
+               },
+               legend: {
+                  cursor: "pointer",
+                  itemclick: function (e) {
+                      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                          e.dataSeries.visible = false;
+                      } else {
+                         e.dataSeries.visible = true;
+                      }
+
+                      e.chart.render();
+                  }
+               },
+               data: dpts
+           });
+
+           count = 1;
+           dataPointsHW = [];
+           dataPointsSW = [];
+           dataPointsMech = [];
+           dataPoints1 = [];
+           dataPoints2 = [];
+           dataPoints3 = [];
+           hiddenIndexVariable = ["true", "false","false","false","false"];
+           chart.render();
+           }else{
+           count = 1;
+           dataPointsHW = [];
+           dataPointsSW = [];
+           dataPointsMech = [];
+           dataPoints1 = [];
+           dataPoints2 = [];
+           dataPoints3 = [];
+                document.getElementById(chartContainerNm).style.display = "none";
+           }
+
+   }
+
+
+
+
+
+   function createPieChart(chartContainerNm,totalList,values1) {
+
+           myScript1(list, totalList)
+           var dps = [];
+           for (var i = 0; i < list.length; i++) {
+               dps.push({y: totList[i], legendText: list[i], label: list[i]});
+           }
+           CanvasJS.addColorSet("greenShades",
+               [//colorSet Array
+
+                   "#DAA520",
+                   "#808000",
+                   "#00008B",
+                   "#008080",
+                   "#2F4F4F"
+               ]);
+        if (values1.checked) {
+           document.getElementById(chartContainerNm).style.display = "block";
+           var chart = new CanvasJS.Chart(chartContainerNm,
+               {
+                   colorSet: "greenShades",
+                   title: {
+                       text: "No of Requirements Per Release Wise"
+                   },
+                   animationEnabled: true,
+                   legend: {
+                       verticalAlign: "bottom",
+                       horizontalAlign: "center"
+                   },
+                   data: [
+                       {
+                           indexLabelFontSize: 7,
+                           indexLabelFontFamily: "Monospace",
+                           indexLabelFontColor: "#1E90FF",
+                           indexLabelLineColor: "#8B4513",
+                           indexLabelPlacement: "outside",
+                           valueFormatString: "#,##0.##",
+                           indexLabel: "{label},{y},(#percent%)",
+                           type: "pie",
+                           showInLegend: true,
+                           toolTipContent: "{legendText} {y} (#percent%)",
+                           legendText: "{indexLabel}",
+                           dataPoints: dps
+                       }
+                   ]
+               });
+
+           count = 1;
+           dataPointsHW = [];
+           dataPointsSW = [];
+           dataPointsMech = [];
+
+           dataPointssecondkallu_filter_value = [];
+           dataPointssecond23_filter_value = [];
+           dataPointssecond22_filter_value = [];
+
+
+           chart.render();
+       } else {
+           document.getElementById(chartContainerNm).style.display = "none";
+
+       }
+   };
+function createGraph12(chartContainerNm,values1,values2,values3,values4,values5,values6
+,values7,values8,values9,values10,checkedGraph)
+   {
+
+           //$(".divIDClass").toggle();
+            var dps1 = [];
+           for (var i = 0; i < list.length; i++) {
+               dps1.push({y: totList[i], legendText: list[i], label: list[i]});
+           }
+            if (values1 != null) {
+               createDataPoints12(values1);
+           }if (values2 != null) {
+               createDataPoints12(values2);
+           }if (values3 != null) {
+               createDataPoints12(values3);
+           }if (values4 != null) {
+               createDataPoints12(values4);
+           }if (values5 != null) {
+               createDataPoints12(values5);
+           }if (values6 != null) {
+               createDataPoints12(values6);
+           }if (values7 != null) {
+               createDataPoints12(values7);
+           }if (values8 != null) {
+               createDataPoints12(values8);
+           }if (values9 != null) {
+               createDataPoints12(values9);
+           }if (values10 != null) {
+               createDataPoints12(values10);
+           }
+           if (checkedGraph.checked) {
+                document.getElementById(chartContainerNm).style.display = "block";
+           var chart = new CanvasJS.Chart(chartContainerNm, {
+               title: {
+                   text: "Filter Bar Graph"
+               },
+               legend: {
+                  cursor: "pointer",
+                  itemclick: function (e) {
+                      if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+                          e.dataSeries.visible = false;
+                      } else {
+                         e.dataSeries.visible = true;
+                      }
+
+                      e.chart.render();
+                  }
+               },
+
+
+               data: [{
+                   name: "dataPoints11",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints11
+               }, {
+                   name:"dataPoints12" ,
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints12
+               }, {
+                   name: "13",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints13
+               }, {
+                   name: "14",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints14
+               },{
+                   name: "15",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints15
+               },{
+                   name: "16",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints16
+               },{
+                   name: "17",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints17
+               },{
+                   name: "18",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints18
+               },{
+                   name: "19",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints19
+               },{
+                   name: "20",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints20
+               },{
+                   name: "21",
+                   showInLegend: true,
+                   type: "column",
+                   dataPoints: dataPoints21
+               }]
+           });
+
+           count = 1;
+           dataPoints4 = [];
+           dataPoints5 = [];
+           dataPoints6 = [];
+           dataPoints1 = [];
+           dataPoints2 = [];
+           dataPoints3 = [];
+           dataPoints7 = [];
+           dataPoints8 = [];
+           dataPoints9 = [];
+           dataPoints10 = [];
+           dataPoints11 = [];
+           hiddenIndexVariable = ["true", "false","false","false","false"];
+           chart.render();
+           }else{
+           count = 1; dataPoints4 = [];
+           dataPoints11 = [];
+           dataPoints12 = [];
+           dataPoints13 = [];
+           dataPoints14= [];
+           dataPoints15= [];
+           dataPoints16= [];
+           dataPoints17= [];
+           dataPoints18= [];
+           dataPoints19 = [];
+           dataPoints20 = [];
+                document.getElementById(chartContainerNm).style.display = "none";
+           }
+
+   };
+
+
+
+
+</script>
+<body onload="myScript1({{targetList}},{{y}})"></body>
+<h2 id="system-requirement-metrics"><span class="header-section-number"></span><font color="RGB(0,32,96)">3 System Requirement Metrics </font></h2>
+
+    <h3 id="Total Amount of System Requirements"><span class="header-section-number" ></span> <font color="RGB(0,32,96)"> 3.1 Accumulated Total System Requirements For Each Target </font></h3>
+
+<div class="one">
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.1.1 Description:
+    </font></h4>
+    <p>The indicator shall show the accumulated count of System Requirements that have been implemented for respective targets</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.1.2 Doors Definitions:
+    </font></h4>
+    <br></br>
+<div class="first">
+
+    <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width="50%" >
+         <tr>
+             <th width="200" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="600" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+
+        <tr>
+             <td>Total for A01:</td>
+             <td>(_Type == Functional OR Non-functional Requirement) AND _Target = A01</td>
+        </tr>
+
+         <tr>
+            <td>Total for A02:</td>
+            <td>(_Type == Functional OR Non-functional Requirement) AND _Target = A01 OR A02</td>
+         </tr>
+
+         <tr>
+             <td>Total for B01D1:</td>
+             <td>(_Type == Functional OR Non-functional Requirement) AND _Target = A01 OR A02 OR B01D1</td>
+         </tr>
+
+
+         <tr>
+            <td>Total for B01D2:</td>
+            <td>(_Type == Functional OR Non-functional Requirement) AND _Target = A01 OR A02 OR B01D1 OR B01D2</td>
+         </tr>
+     </table>
+
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+        <font color="RGB(0,32,96)">
+            3.1.3 Baseline Release:
+        </font></h4>
+            <br></br>
+
+    <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width="50%" >
+          <tr>
+              <th width="25%" bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></th>
+              {% for item in targetList %}
+              <th width="15%" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></th>
+              {% endfor %}
+          </tr>
+      <tr>
+          <th>Selectable</th>
+          {% for item in targetList %}
+             <th><input type="checkbox"  value="{{item}}" id='chk11{{item}}' bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+    </table>
+    <br></br>
+
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+        <font color="RGB(0,32,96)">
+            3.1.4 Attributes/Baseline Information:
+        </font></h4>
+        <br></br>
+  <div id="firstDiv">
+    <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width=auto >
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+
+      <tr>
+          <td>Accumulated System Requirements</td>
+          {% for item in firstFilter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="5">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph00"   onchange="createGraph('chartContainer',{{firstFilter}},null,null,null,null,null,this)"/>BAR-GRAPH</label><br/>
+              <label><input type="checkbox" class="chkGraph" id="chkGraph761"  onchange="createPieChart('chartContainer39',{{firstFilter}},this)"/>PIE-GRAPH</label>
+          </td>
+      </tr>
+    </table>
+</div>
+    <div id="graphcontainer">
+            <div class ="divIDClass" id="chartContainer" style="height: 300px; width: 30%; display: none"></div>
+            <div class ="divIDClass" id="chartContainer39" style="height: 300px; width: 30%; display: none"></div>
+    </div>
+
+<br>
+</br>
+</div>
+
+
+
+<div class="second">
+<div>
+
+    <h3 id="Total Amount of System Requirements per Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.2 Accumulated Total System Requirements For Each Target,Discipline</font></h3>
+
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+        3.2.1 Description:
+    </font></h4>
+    <p>The indicator shall show the accumulated  count of System Requirements that have been allocated to a specific sub-system / component (e.g. SW, HW, Mech., FIR etc.) for respective targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.2.2 Doors Definition:
+    </font></h4>
+    <br></br>
+<div class="second">
+
+    <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width="auto" >
+         <tr>
+             <th width="200" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="600" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>_Target = A01</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _Target == target AND _ImpactedDiscipline == impcatedDisc_enum)</td></tr>
+         <tr>
+         <td>_Target  = A01 OR A02</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _Target == target AND _ImpactedDiscipline == impcatedDisc_enum)</td></tr>
+         <tr>
+         <td>_Target  = A01 OR A02 OR B01D1</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _Target == target AND _ImpactedDiscipline == impcatedDisc_enum)</td></tr>
+         <tr>
+         <td>_Target  = A01 OR A02 OR B01D1 OR B01D2</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _Target == target AND _ImpactedDiscipline == impcatedDisc_enum)</td></tr>
+
+     </table>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+        <font color="RGB(0,32,96)">
+            3.2.3 Baseline Release:
+        </font></h4>
+        <br></br>
+     <table class="four" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <th>Selectable</th>
+          {% for item in targetList %}
+             <th><input type="checkbox"  value='{{item}}' id='chk{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+    </table>
+
+<br>
+</br>
+   <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+        3.2.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+
+<table class="four" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td> Accumulated System Requirements with SW</td>
+          {% for item in Second_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+          <td rowspan="5">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph01"  onchange="createGraph('chartContainer1',{{Second_Filter}},{{Third_Filter}},{{Fourth_Filter}},null,null,null,this)"/>BAR GRAPH </label><br/>
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph76"  onchange="createPieChart('chartContainer49',{{y}},this)"/>PIE GRAPH</label>
+
+          </td>
+      </tr>
+       <tr>
+           <td>2</td>
+          <td> Accumulated System Requirements with HW</td>
+          {% for item in Third_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+
+
+          {% endfor %}
+
+       </tr>
+       <tr>
+           <td>3</td>
+          <td> Accumulated System Requirements with MECHANICAL</td>
+          {% for item in Fourth_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+         <td>4</td>
+          <td> No of Requirements Per Release Wise</td>
+          {% for item in  y %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+        <table>
+        <tr>
+             <td align="center">Total Requirements = {{PL}}</td>
+        </tr>
+        </table>
+
+    </tr>
+
+
+</table>
+
+
+
+
+</td>
+
+</table>
+    <td rowspan="2"><div class ="divIDClass" id="chartContainer1" style="height: 300px; width: 30%;display: none"></div></td></tr>
+    <td rowspan="2"><div class ="divIDClass" id="chartContainer49" style="height: 300px; width: 30%; display: none"></div></td>
+	<br>
+	</br>
+	</div>
+</div>
+
+
+
+<div class="three">
+
+    <h3 id="Number of System Requirements by particular Discipline and per _Target"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.3 Number of System Requirements by particular Discipline and for each Target </font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.3.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements that have been allocated to a specific sub-system / component (e.g. SW, HW, Mech., FIR etc.) for perticular targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.3.2 Doors Definitions:
+    </font></h4>
+    <br></br>
+
+     <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width="50%" >
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>Total for HW</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ImpactedDiscipline ==HW AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for SW</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ImpactedDiscipline ==SW AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for Mechanical</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ImpactedDiscipline ==MECH AND _Target = target)</td></tr>
+
+</td>
+         </td>
+
+
+         </tr>
+		 </table>
+
+<br>
+</br>
+
+
+
+
+
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.3.3 Baseline Release:
+    </font></h4>
+    <br></br>
+
+
+<table class="eight" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <th><input type="checkbox"  value='{{item}}' id='chk5010{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+       <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.3.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+
+<table class="four" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+
+
+      <tr>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}"  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>System Requirements with SW</td>
+          {% for item in Five_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="4">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph02"  onchange="createGraph('chartContainer2',{{Five_Filter}},{{Six_Filter}},{{Seventh_Filter}},null,null,null,this)"/>BAR GRAPH</label><br/>
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph736"  onchange="createPieChart('chartContainer79',{{Q}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>System Requirements with HW</td>
+          {% for item in  Six_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+         <tr>
+          <td>3</td>
+          <td>System Requirements with MECHANICAL</td>
+          {% for item in  Seventh_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+         <td>4</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  Q %}
+             <td class="{{targetList[y.index(item)]}}">{{item}}</td>
+          {% endfor %}
+
+
+
+
+      </tr>
+     <tr>
+
+
+         <td colspan="11" align="center">Total Requirements = {{PF}}</td>
+
+
+
+    </tr>
+
+
+</table>
+
+
+
+   </div>
+    <div id="graphcontainer11">
+    <div class ="divIDClass" id="chartContainer2" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer79" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+<div class="four">
+
+    <h3 id="Number of System Requirements per _Target and _ReqStatus"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.4 Number of System Requirements for each Target and ReqStatus</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.4.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for perticular targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.4.2 Doors Definitions:
+    </font></h4>
+    <br>
+</br>
+
+    <table class="fourty"  border="1" cellpadding="5" cellspacing="0" padding="100" width="auto" >
+
+
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td> For _ReqStatus</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == Init AND _Target = target)</td></tr>
+         <tr>
+         <td>For _ReqStatus</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == In Review AND _Target = target)</td></tr>
+         <tr>
+         <td>For _ReqStatus:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == To be clarfied AND _Target = target)</td></tr>
+         <tr>
+         <td>For _ReqStatus:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == Approved AND _Target = target)</td></tr>
+         <tr>
+		 <td>For _ReqStatus:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == Obsolete AND _Target = target)</td></tr>
+         <tr>
+		 <td>For _ReqStatus:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatus == Not applicable AND _Target = target)</td></tr>
+</td>
+        </td>
+
+
+         </tr>
+		 </table>
+
+</div>
+
+
+<br>
+</br>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.4.3 Baseline Release:
+    </font></h4>
+    <br></br>
+
+<table class="four" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <th><input type="checkbox" class="check" value='{{item}}' id='chk4{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+	  </table>
+
+
+<br>
+</br>
+   <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.4.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+</div>
+
+<div>
+<table class="four" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Init</td>
+          {% for item in Eight_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+           <td rowspan="7">
+               <label><input type="checkbox" class="chkGraph" id="chkGraph03"  onchange="createGraph('chartContainer3',{{Eight_Filter}},{{Nine_Filter}},{{Tenth_Filter}},{{Eleventh_filter}},{{Twelveth_Filter}},{{Therteen_Filter}},this)"/>BAR GRAPH</label><br/>
+
+               <label><input type="checkbox" class="chkGraph" id="chkGraph746"  onchange="createPieChart('chartContainer89',{{R}},this)"/>PIE GRAPH</label><br/>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>In Review</td>
+          {% for item in  Nine_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  Tenth_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Approved</td>
+          {% for item in Eleventh_filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>5</td>
+          <td>Obsolete</td>
+          {% for item in  Twelveth_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>6</td>
+          <td>Not applicable</td>
+          {% for item in  Therteen_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+      </tr>
+    <tr>
+         <td>7</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  R %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+
+
+
+      </tr>
+    <tr>
+        <table>
+
+          <td align="center">Total Requirements = {{PR}}</td>
+
+        </table>
+
+    </tr>
+
+</table>
+</div>
+    <div id="graphcontainer1">
+    <div class ="divIDClass" id="chartContainer3" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer89" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+
+<div class="eight">
+    <h2 id="System Requirements Status for Each Target and Different Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5 System Requirements Status for Each Target and Different Discipline </font></h2>
+
+
+    <h3 id="System Requirements status ReqStatusHW : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.1 System Requirements status ReqStatusHW : For Each Target and Discipline </font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.1.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for HW Discipline for particular targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.1.2 Doors Definition:
+    </font></h4>
+    <br>
+</br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width = "50%" >
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusHW:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusHW == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusHW:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusHW == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target =target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+
+    <br></br>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.1.3 Baseline Release:
+    </font></h4>
+    <br></br>
+
+<table class="eight" border="1" cellpadding="5" cellspacing="0" padding="100" width="Auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <th><input type="checkbox" class="check" value='{{item}}' id='chk500{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+       <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.1.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="eight" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in twentysix_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+           <td rowspan="5">
+               <label><input type="checkbox" class="chkGraph" id="chkGraph04"  onchange="createGraph('chartContainer4',{{twentysix_Filter}},{{twentyseven_Filter}},{{twentyeight_Filter}},{{twentynine_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+               <label><input type="checkbox" class="chkGraph" id="chkGraph846"  onchange="createPieChart('chartContainer99',{{total_for_Reqests_HW}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  twentyseven_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  twentyeight_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in twentynine_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_Reqests_HW %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+         <td align="center">Total Requirements = {{PE}}</td>
+
+        </table>
+
+    </tr>
+
+
+</head>
+</table>
+    <div id="graphcontainer2">
+    <div class ="divIDClass" id="chartContainer4" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer99" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+
+
+<div class="five">
+
+    <h3 id="System Requirements status ReqStatusSW : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.2 System Requirements status ReqStatusSW : For Each Target and Discipline</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.2.1 Description:
+    </font></h4>
+    <font color="RGB(0,32,96)"><p>The indicator shall show the  count of System Requirements and there status for SW Discipline for particular targets.</p></font>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.2.2 Doors Definition:
+    </font></h4>
+    <br></br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%" >
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusSW:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusSW == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusSW:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusSW == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+    <br>
+    </br>
+        <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.2.3 Baseline Release:
+    </font></h4>
+    <br></br>
+<table class="five" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <th><input type="checkbox" class="check" value='{{item}}' id='chk5{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></th>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+       <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.2.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="five" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}"  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in fourteen_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="5">
+              <label> <input type="checkbox" class="chkGraph" id="chkGraph05"  onchange="createGraph('chartContainer5',{{fourteen_Filter}},{{fifteen_Filter}},{{sixteen_Filter}},{{seventeen_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph946"  onchange="createPieChart('chartContainer109',{{total_for_sw}},this)"/>PIE CHART</label>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  fifteen_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  sixteen_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in seventeen_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_sw %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+        <td align="center">Total Requirements = {{PD}}</td>
+
+        </table>
+
+    </tr>
+
+
+</head>
+
+    </table>
+    <div id="graphcontainer3">
+    <div class ="divIDClass" id="chartContainer5" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer109" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+<div class="Nine">
+
+    <h3 id="System Requirements status ReqStatusMECH : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.3 System Requirements status ReqStatusMECH : For Each Target and Discipline</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.3.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for MECH Discipline for particular targets.
+</p></font>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.3.2 Doors Definition:
+    </font></h4>
+    <br>
+</br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%">
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusMECH:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusMECH == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusMECH:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusMECH == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+    <br></br>
+        <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.3.3 Baseline Release:
+    </font></h4>
+    <br></br>
+
+<table class="Nine" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <td><input type="checkbox" class="check" value='{{item}}' id='chk5000{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></td>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+           <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.3.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="Nine" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in thirty_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="5">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph06"  onchange="createGraph('chartContainer6',{{thirty_Filter}},{{thirtyone_Filter}},{{thirtytwo_Filter}},{{thirtythree_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph446"  onchange="createPieChart('chartContainer209',{{total_for_Reqests_MECH}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  thirtyone_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  thirtytwo_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in thirtythree_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_Reqests_MECH %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+          <td align="center">Total Requirements = {{PX}}</td>
+
+        </table>
+
+    </tr>
+
+</head>
+</table>
+
+
+
+
+    <div id="graphcontainer4">
+    <div class ="divIDClass" id="chartContainer6" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer209" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+<div class="Six">
+
+    <h3 id="System Requirements status ReqStatusTest : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.4 System Requirements status ReqStatusTest : For Each Target and Discipline</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.4.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for Test Discipline for particular targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.4.2 Doors Definition:
+    </font></h4>
+    <br></br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%">
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusTest:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusTest == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusTest:</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusTest == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+
+    <br>
+</br>
+        <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.4.3 Baseline Release:
+    </font></h4>
+    <br></br>
+<table class="six" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <td><input type="checkbox" class="check" value='{{item}}' id='chk39{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></td>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+           <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.4.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="six" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}"  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in Eighteen_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+            <td rowspan="5">
+                <label><input type="checkbox" class="chkGraph" id="chkGraph07"  onchange="createGraph('chartContainer7',{{Eighteen_Filter}},{{nineteen_Filter}},{{twenty_Filter}},{{twentyone_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+                <label><input type="checkbox" class="chkGraph" id="chkGraph346"  onchange="createPieChart('chartContainer309',{{total_for_Reqests}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  nineteen_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  twenty_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in twentyone_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_Reqests %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+         <td align="center">Total Requirements = {{PK}}</td>
+
+        </table>
+
+    </tr>
+
+</table>
+
+</div>
+
+    </table>
+    <div id="graphcontainer5">
+    <div class ="divIDClass" id="chartContainer7" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer309" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+<br class="seven">
+
+    <h3 id="System Requirements status ReqStatusFuSa : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.5 System Requirements status ReqStatusFuSa : For Each Target and Discipline</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.5.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for FuSa Discipline for particular targets</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.5.2 Doors Definition:
+    </font></h4>
+<br>
+</br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%" >
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusFuSa</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusFuSa == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusFuSa</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusFuSa == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+    <br></br>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.5.3 Baseline Release:
+    </font></h4>
+    <br></br>
+<table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="50%">
+      <tr>
+          <td width="25%" bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td width="15%" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+             <td><input type="checkbox" class="check" value='{{item}}' id='chk59{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></td>
+          {% endfor %}
+      </tr>
+</table>
+<br>
+
+    </br>
+       <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.5.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in twentytwo_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="5">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph08"  onchange="createGraph('chartContainer8',{{twentytwo_Filter}},{{twentythree_Filter}},{{twentyfour_Filter}},{{twentyfive_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph1046"  onchange="createPieChart('chartContainer409',{{total_for_Reqests_Fusa}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  twentythree_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  twentyfour_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in twentyfive_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_Reqests_Fusa %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+     <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+          <td align="center">Total Requirements = {{PC}}</td>
+
+        </table>
+
+    </tr>
+
+</table>
+
+</div>
+
+    <div id="graphcontainer6">
+    <div class ="divIDClass" id="chartContainer8" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer409" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+<br class="seven">
+
+    <h3 id="System Requirements status ReqStatusSYS : For Each Target and Discipline"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.5.6 System Requirements status ReqStatusSYS : For Each Target and Discipline</font></h3>
+
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.6.1 Description:
+    </font></h4>
+    <p>The indicator shall show the  count of System Requirements and there status for SYS Discipline for particular targets.</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.6.2 Doors Definition:
+    </font></h4>
+<br>
+</br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%" >
+         <tr>
+             <th width="300" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="500" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>for _ReqStatusSYS</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _ReqStatusSYS == reqStatusDisc_enum AND _Target = target)</td></tr>
+         <tr>
+         <td>Total for _ReqStatusSYS</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND (_ReqStatusSYS == In Review OR Approved OR To Be Clarified OR Not Applicable) AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+    <br></br>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.6.3 Baseline Release:
+    </font></h4>
+    <br></br>
+    <table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="autp">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+          <td><input type="checkbox" class="check" value='{{item}}' id='chk390{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></td>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+       <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.5.6.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}"  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>In Review</td>
+          {% for item in thirtyfour_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+          <td rowspan="5">
+              <label><input type="checkbox" class="chkGraph" id="chkGraph909"  onchange="createGraph('chartContainer9',{{thirtyfour_Filter}},{{thirtyfive_Filter}},{{thirtysix_Filter}},{{thirtyseven_Filter}},null,null,this)"/>BAR GRAPH</label><br/>
+
+
+              <label><input type="checkbox" class="chkGraph" id="chkGraph2046"  onchange="createPieChart('chartContainer509',{{total_for_Reqests_SYS2}},this)"/>PIE GRAPH</label>
+
+          </td>
+
+
+      </tr>
+       <tr>
+           <td>2</td>
+          <td>Approved</td>
+          {% for item in  thirtyfive_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>To_be_clarified</td>
+          {% for item in  thirtysix_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Not applicable</td>
+          {% for item in thirtyseven_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+
+       <tr>
+           <td>5</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  total_for_Reqests_SYS2 %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+          <td align="center">Total Requirements = {{PY}}</td>
+
+        </table>
+
+    </tr>
+
+
+</table>
+
+
+</div>
+
+    <div id="graphcontainer7">
+    <div class ="divIDClass" id="chartContainer9" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer509" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+
+<div class="tweleve">
+
+    <h3 id="System Requirements Review Status per _System Functions and _Target"><span class="header-section-number"></span> <font color="RGB(0,32,96)">3.6 System Requirements Review Status per _System Functions and _Target</font></h3>
+
+    <div>
+<h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.6.1 Description:
+    </font></h4>
+    <p>The indicator shall show the accumulated count of System Requirements that have been implemented for respective targets</p>
+</div>
+    <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.6.2 Doors Definition:
+    </font></h4>
+    <br>
+</br>
+    <table class="fourty"  border="1" cellpadding="1" cellspacing="1" padding="100" width="50%">
+         <tr>
+             <th width="100" bgcolor="RGB(0,32,96)"><font color="white">Legend</font></th>
+             <th width="800" bgcolor="RGB(0,32,96)"><font color="white">Door Query</font></th>
+             <tr>
+         <td>For _System Functions</td>
+         <td>(_Type == Functional OR Non-functional Requirement) AND _System Functions == system-function AND _Target = target)</td></tr>
+
+</td>
+
+     </td>
+
+         </tr>
+
+     </table>
+    <br></br>
+        <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.6.3 Baseline Release:
+    </font></h4>
+    <br></br>
+    <table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="50%">
+      <tr>
+          <td width="25%" bgcolor="RGB(0,32,96)"><font color="white">Baseline Release</font></td>
+          {% for item in targetList %}
+          <td width="15%" bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+      </tr>
+      <tr>
+          <td>Selectable</td>
+          {% for item in targetList %}
+          <td><input type="checkbox" class="check" value='{{item}}' id='chk990{{item}}'bgcolor="RGB(0,32,96)" checked onchange="checkTargetToShow(this)"/></td>
+          {% endfor %}
+      </tr>
+</table>
+<br></br>
+           <h4 style="padding-bottom: 0px; margin-bottom: 0px;"><span class="header-section-number"></span>
+    <font color="RGB(0,32,96)">
+3.6.4 Attributes/Baseline Information:
+    </font></h4>
+    <br></br>
+<table class="seven" border="1" cellpadding="5" cellspacing="0" padding="100" width="auto">
+      <tr>
+          <td bgcolor="RGB(0,32,96)"><font color="white">Index</font></td>
+          <td  bgcolor="RGB(0,32,96)"><font color="white">Attributes/Baseline</font></td>
+          {% for item in targetList %}
+          <td class="{{item}}"  bgcolor="RGB(0,32,96)"><font color="white">{{item}}</font></td>
+          {% endfor %}
+          <td bgcolor="RGB(0,32,96)"><font color="white">Graph</font></td>
+      </tr>
+      <tr>
+          <td>1</td>
+          <td>Init</td>
+          {% for item in thirtyeight_Filter %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+          <td rowspan="11">
+              <labe><input type="checkbox" class="chkGraph" id="chkGraph09"  onchange="createGraph12('chartContainer11',{{thirtyeight_Filter}},{{thirtynine_Filter}},{{fourty_Filter}},{{fourtyone_Filter}},{{fourtytwo_Filter}},{{fourtythree_Filter}},{{fourtyfour_Filter}},{{fourtyfive_Filter}},{{fourtysix_Filter}},{{fourtyseven_Filter}},this)"/>BAR GRAPH</labe><br/>
+              <label><input type="checkbox" class="chkGraph" id="chkGraph2146"  onchange="createPieChart('chartContainer619',{{PLK}},this)"/>PIE GRAPH</label>
+          </td>
+      </tr>
+
+       <tr>
+           <td>2</td>
+          <td>In Review</td>
+          {% for item in  thirtynine_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+       <tr>
+           <td>3</td>
+          <td>Application Interface</td>
+          {% for item in  fourty_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>Communication to MTA</td>
+          {% for item in fourtyone_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>5</td>
+          <td>Normal Mode Management</td>
+          {% for item in fourtytwo_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>6</td>
+          <td>Time Synchronization</td>
+          {% for item in fourtythree_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>7</td>
+          <td>Voltage Monitoring</td>
+          {% for item in fourtyfour_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>8</td>
+          <td>Vehicle Communication</td>
+          {% for item in fourtyfive_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>9</td>
+          <td>Physical Limits</td>
+          {% for item in fourtysix_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+          <td>10</td>
+          <td>On-Board Communication</td>
+          {% for item in fourtyseven_Filter %}
+             <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+           <td>11</td>
+          <td>No of Requirements Per Release Wise</td>
+          {% for item in  _System_F8 %}
+            <td class="{{targetList[loop.index0]}}">{{item}}</td>
+          {% endfor %}
+
+      </tr>
+    <tr>
+        <table class="fourth" border="1" cellpadding="4" cellspacing="0" padding="100" width="50%">
+
+          <td align="center">Total Requirements = {{PLK1}}</td>
+
+        </table>
+
+    </tr>
+ <div id="graphcontainer8">
+    <div class ="divIDClass" id="chartContainer11" style="height: 300px; width: 30%; display: none"></div>
+    <div class ="divIDClass" id="chartContainer619" style="height: 300px; width: 30%;display: none"></div>
+
+    </div>
+
+
+</table>
+
+</div>
+    <br>
+<td rowspan="2"><div class ="divIDClass" id="chartContainer609" style="height: 300px; width: 30%;"></div></td></tr>
+<td rowspan="2"><div class ="divIDClass" id="chartContainer10" style="height: 500px; width: 50%;"></div></td></tr>
+</br>
+<br>
+</br>
+<br>
+</br>
+
+<br>
+</br>
+
+
+
+
+</body>
+
+</div>
+</html></html>

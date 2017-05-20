@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+  th{
+      color:white;
+      background-color:green;
+  }
+tr:nth-child(even) {background: white}
+tr:nth-child(odd) {background: blue}
+
+</style>
+
+  <head>
+    <title>Test App</title>
+    <script src='static/Chart.min.js'></script>
+  </head>
+
+  <body>
+
+  <table border="1" cellpadding="5" cellspacing="0" padding="100">
+      <tr>
+          <td></td>
+          <td>A01</td>
+          <td>A02</td>
+          <td>B01D1</td>
+          <td>B01D2</td>
+      </tr>
+      <tr>
+          <td>Accumulated System Requirements with HW Impact</td>
+          <td>{% for row in hw %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in hw1 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in hw2 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in hw3 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+      </tr>
+      <tr>
+          <td>Accumulated System Requirements with SW Impact</td>
+          <td>{% for row in sw %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in sw1 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in sw2 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in sw3 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+      </tr>
+      <tr>
+          <td>Accumulated System Requirements with MECH Impact</td>
+          <td>{% for row in mech %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in mech1 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in mech2 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+          <td>{% for row in mech3 %} {% for d in row %}{{ d }}{% endfor %}{% endfor %}</td>
+      </tr>
+
+  </table>
+
+  <table>
+      <tr><th>HW Impact</th><th>SW Impact</th><th>Mech Impact</th></tr>
+      <tr><td><canvas id="chartHW" width="400" height="400"></canvas></td>
+      <td><canvas id="chartSW" width="400" height="400"></canvas></td>
+      <td><canvas id="chartMech" width="400" height="400"></canvas></td></tr>
+  </table>
+
+  <script>
+   // bar chart data
+
+   var barDataHW = {
+   labels : [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+   datasets : [
+      {
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+         data : [{% for hw in valuesHW %}
+                    {% for row in hw %}
+                        {% for d in row %}
+                            {{ d }},
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}]
+      }
+      ]
+   }
+
+   var barDataSW = {
+   labels : [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+   datasets : [
+      {
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+         data : [{% for sw in valuesSW %}
+                    {% for row in sw %}
+                        {% for d in row %}
+                            {{ d }},
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}]
+      }
+      ]
+   }
+
+   var barDataMech = {
+   labels : [{% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+   datasets : [
+      {
+            fillColor: "rgba(151,187,205,0.2)",
+            strokeColor: "rgba(151,187,205,1)",
+            pointColor: "rgba(151,187,205,1)",
+         data : [{% for mech in valuesMech %}
+                    {% for row in mech %}
+                        {% for d in row %}
+                            {{ d }},
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}]
+      }
+      ]
+   }
+
+   // get bar chart canvas
+   var mychartHW = document.getElementById("chartHW").getContext("2d");
+   var mychartSW = document.getElementById("chartSW").getContext("2d");
+   var mychartMech = document.getElementById("chartMech").getContext("2d");
+
+   steps = 20
+   max = 200
+   // draw bar chart
+   new Chart(mychartHW).Bar(barDataHW, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+   });
+
+   new Chart(mychartSW).Bar(barDataSW, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+   });
+
+   new Chart(mychartMech).Bar(barDataMech, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+   });
+</script>
+<script>
+   var pieData = [
+           {% for item in labels %}
+                  "{{item}}",
+              {% endfor %}],
+   datasets : [
+      {
+
+         {% for sw in valuesSW %}
+                    {% for row in sw %}
+                        {% for d in row %}
+                            {{ d }},
+                        {% endfor %}
+                    {% endfor %}
+                {% endfor %}
+      }
+
+   }
+         ];
+
+   // get bar chart canvas
+   var mychart = document.getElementById("chart").getContext("2d");
+
+   steps = 10
+   max = 10
+   // draw pie chart
+   new Chart(document.getElementById("chart").getContext("2d")).Pie(pieData);
+
+</script>
+</body></html>
+  </body>
+</html>
