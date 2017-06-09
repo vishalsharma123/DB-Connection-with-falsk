@@ -15,7 +15,7 @@ with open  ('save4.txt', 'r') as f:
 for word in values:
     print (word)
 
-cnx = mysql.connector.connect(user='root',password = 'root', database='adas')
+cnx = mysql.connector.connect(user='root',password = 'root', database='dbname')
 cursor = cnx.cursor()
 
 query = "INSERT INTO adas VALUES ("
